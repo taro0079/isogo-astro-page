@@ -1,3 +1,6 @@
+---
+import "../styles/global.css"
+---
 <!doctype html>
 <html lang="ja">
 	<head>
@@ -9,12 +12,25 @@
 		<title>Astro Basics</title>
 	</head>
 	<body>
+		<nav class="shadow-md py-6 px-4">
+		<div class="flex items-center justify-between">
+			<div class="flex-shrink-0">
+				<a href="/" class="text-xl">
+					カトリック磯子教会
+				</a>
+			</div>
+			<div class="flex items-baseline space-x-4">
+        <a class="px-3 py-2" href="/about/">About</a>
+        <a class="px-3 py-2" href="/news/">ニュース</a>
+        <a class="px-3 py-2" href="/mass/">ミサについて</a>
+        <a class="px-3 py-2" href="/course/">キリスト教講座</a>
+			</div>
+		</div>
+	</nav>
 		<slot />
 	</body>
-    <div>
+    <div class="mt-20">
         このホームページは、カトリック磯子教会の教会委員会の管理のもとで運営されています。
-
-
     </div>
 </html>
 
