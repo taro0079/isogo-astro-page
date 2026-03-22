@@ -1,11 +1,53 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-<h1>ミサについて</h1>
+  <h1 class="text-4xl font-bold">ミサについて</h1>
+  <div class="space-y-20">
+    <div class="flex flex-col items-center space-y-10">
+      <h2 class="text-2xl font-bold">ミサの時間</h2>
+      <table class="min-w-full divide-y divide-gray-300">
+        <tbody class="divide-y divide-gray-200 bg-white">
+          <tr>
+            <td class="px-4 py-3 text-sm max-w-xs text-center"
+              >金曜日 (Friday)</td
+            >
+            <td class="px-4 py-3 text-sm max-w-xs text-center">10:00</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 text-sm max-w-xs text-center"
+              >土曜日 (Saturday)</td
+            >
+            <td class="px-4 py-3 text-sm max-w-xs text-center">16:00</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 text-sm max-w-xs text-center"
+              >日曜日 (Sunday)</td
+            >
+            <td class="px-4 py-3 text-sm max-w-xs text-center">9:30</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-sm text-gray-500 mt-10 w-1/2">
+        平日ミサは神父様のご都合により行われない時もあります。その場合は事前にお知らせしますので、トップページの今月の予定や教会内の掲示版などをご確認ください。
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center space-y-10">
+      <h2 class="text-2xl font-bold">ミサのコンテンツ</h2>
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <a
+            href="https://www.youtube.com/playlist?list=PLZ9bQ79N7BYCrD4EO-cxhqS4Yq5dshzfM"
+            class="underline">Youtube配信</a>
+        </div>
+        <div>
+          <a
+            href="https://app.box.com/s/dhy5isx5e4e4ocrlsne69evpfwav82cj"
+            class="underline">ミサ説教の音源</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>
-
-
-
-

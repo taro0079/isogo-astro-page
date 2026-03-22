@@ -1,16 +1,21 @@
-
 ---
 import Layout from "../layouts/Layout.astro"
+import { Image } from "astro:assets";
+import ShisaiImage from "../images/taniwaki.webp"
 ---
 <Layout>
-<h1>磯子教会について</h1>
-    <div>
-        <h2>司祭について</h2>
-        <div>ドミニコ</div>
-        <h3>谷脇 慎太郎</h3>
-        <div>小教区管理者</div>
-        <div>1978年 長崎県生まれ</div>
-        <div>2008年4月29日 司祭叙階</div>
+    <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center space-y-4">
+            <h2 class="text-3xl font-bold">司祭について</h2>
+            <Image src={ShisaiImage} alt="谷脇神父の写真" class="w-64 h-auto rounded-lg mb-4" />
+            <div>
+                <div>ドミニコ</div>
+                <h3 class="text-3xl font-bold">谷脇 慎太郎</h3>
+                <div>小教区管理者</div>
+                <div class="text-gray-500">1978年 長崎県生まれ</div>
+                <div class="text-gray-500">2008年4月29日 司祭叙階</div>
+            </div>
+        </div>
     </div>
 </Layout>
 

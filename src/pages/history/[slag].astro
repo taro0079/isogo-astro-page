@@ -1,0 +1,35 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+type HistoryModule = {
+	frontmatter: {
+		title: string;
+	};
+	default: any;
+};
+
+export async function getStaticPaths() {
+	const historyModules = import.meta.glob<HistoryModule>(
+		"../../contents/history/*.md",
+		{ eager: true },
+	);
+
+	return Object.entries(historyModules).map(([path, post]) => {
+		const slag = path.split("/").pop()?.replace(".md", "") ?? "";
+		return {
+			params: { slag },
+			props: { post },
+		};
+	});
+}
+
+const { post } = Astro.props as { post: HistoryModule };
+const Content = post.default;
+---
+
+<Layout>
+	<h1 class="text-4xl font-bold">{post.frontmatter.title}</h1>
+	<div class="my-10">
+		<Content />
+	</div>
+</Layout>

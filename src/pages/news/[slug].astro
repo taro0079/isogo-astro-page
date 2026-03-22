@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+export async function getStaticPaths() {
+    const newsModules = import.meta.glob('../../contents/news/*.md', {eager: true})
+    return Object.entries(newsModules).map(([path, post]) => {
+        const slug = path.split('/').pop()?.replace('.md', '')
+        return {
+            params: {slug},
+            props: {post},
+        }
+    })
+}
+
+const { post } = Astro.props as { post: any }
+const Content = post.default
+---
+<Layout>
+    <div class="text-2xl font-bold mb-8">{post.frontmatter.title}</div>
+    <Content />
+</Layout>
