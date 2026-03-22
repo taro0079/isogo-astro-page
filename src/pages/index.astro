@@ -1,12 +1,114 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { Image } from "astro:assets";
+import JesusImage from "../images/jesus-isogo.webp"
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+type NewsModule = {
+  frontmatter: {
+    title: string;
+  };
+  default: any;
+};
+
+const newsModules = import.meta.glob<NewsModule>('../contents/news/*.md', {
+  eager: true,
+});
+
+const latestNews = Object.entries(newsModules)
+  .sort(([a], [b]) => b.localeCompare(a))
+  .slice(0, 5)
+  .map(([path, news]) => ({
+    slug: path.split('/').pop()?.replace('.md', '') ?? '',
+    title: news.frontmatter.title,
+  }));
+
 ---
 
 <Layout>
+<div class="items-center space-y-40">
+  <div class="flex flex-col items-center">
+    <Image src={JesusImage} alt="トップ画像" class="w-2/3 rounded-lg" />
+    <div class="items-center text-center my-8">
+      <h1>カトリック磯子教会</h1>
+    </div>
+  </div>
+
+  <div class="items-center">
+    <h2 class="my-8 text-center">News</h2>
+    <div class="space-y-8 max-w-150 mx-auto">
+      {latestNews.map((news) => (
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+          <div class="p-4">
+            <h3>{news.title}</h3>
+            <div class="text-right mt-2">
+              <a href={`/news/${news.slug}/`} class="underline text-semibold">続きを見る...</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div>
+    <h2 class="my-8 text-center">Information</h2>
+    <table class="mx-auto border-collapse max-w-1/2">
+      <tr class="border-b border-gray-100 last:border-none">
+        <th class="information-header">教会名</th>
+        <td class="information-data">カトリック磯子教会</td>
+      </tr>
+      <tr class="border-b border-gray-100 last:border-none">
+        <th class="information-header">住所</th>
+        <td class="information-data">
+          <div class="flex items-center gap-6">
+            <div>
+              〒235-0016
+              <br>
+              神奈川県横浜市磯子区磯子3-8-14
+            </div>
+            <div>
+              <a
+                href="https://maps.app.goo.gl/RPo3Eb9RMgoURFYf7"
+                class="text-sm text-gray-500 underline decoration-dashed"
+              >Google Mapで見る</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="border-b border-gray-100 last:border-none">
+        <th class="information-header">Email</th>
+        <td class="information-data">isogochurch@gmail.com</td>
+      </tr>
+      <tr class="border-b border-gray-100 last:border-none">
+        <th class="information-header">TEL</th>
+        <td class="information-data">045-751-3237</td>
+      </tr>
+      <tr class="border-b border-gray-100 last:border-none">
+        <th class="information-header">アクセス</th>
+        <td class="information-data">
+          <div class="font-bold">JR磯子駅から徒歩10分</div>
+          横浜交通局113系統・京浜急行バス110系統 間坂バス停から徒歩3分
+          <br>
+          お車でお越しの際は、国道16号線を関内方面に向かって「磯子三丁目中央」の信号を左に入ったところにあります。カーナビに従って、磯子教会に来ようとすると、旧道から入るように指示されることがありますが、旧道からは来られませんのでご注意ください。
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="flex flex-col items-center">
+    <h2 class="my-8">コンテンツ</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div><a
+          href="https://app.box.com/s/7zi1gnjmk7z8xnmejy1h79a5qr6uldtb"
+          class="underline"
+        >月刊磯子ニュース</a></div>
+      <div><a href="http://www.yokohama.catholic.jp/" class="underline">教区のお知らせ</a></div>
+      <div><a
+          href="https://www.cbcj.catholic.jp/category/information/pope/"
+          class="underline"
+        >教皇メッセージ</a></div>
+    </div>
+  </div>
+</div>
 
 
 </Layout>
