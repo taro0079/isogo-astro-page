@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "sites": [
+    {
+      "key": "awesome-morita-dev",
+      "display_name": "Awesome Morita Dev",
+      "website_url": "https://awesome-morita-dev.tplinkdns.com/",
+      "root_path": ""
+    }
+  ]
+}
